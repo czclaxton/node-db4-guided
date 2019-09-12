@@ -23,7 +23,9 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("species");
+        .inTable("species")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     })
     .createTable("zoo_animals", tbl => {
       tbl
@@ -31,13 +33,17 @@ exports.up = function(knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("zoos");
+        .inTable("zoos")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       tbl
         .integer("animal_id")
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("animals");
+        .inTable("animals")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
       tbl.primary(["zoo_id", "animal_id"]);
     });
 };
